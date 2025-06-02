@@ -140,7 +140,7 @@ li a:hover::before {
   -ms-transition: transform 0.2s, box-shadow 0.2s;
   -o-transition: transform 0.2s, box-shadow 0.2s;
 }
-p{
+p {
   color: #0056b3;
 }
 .carousel {
@@ -248,7 +248,7 @@ p{
     width: 220px;
     height: 400px;
   }
-  
+
   .carousel {
     padding: 35px;
   }

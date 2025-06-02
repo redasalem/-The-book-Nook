@@ -133,13 +133,19 @@ li a:hover::before {
 header {
   margin-top: 60px !important;
 }
-div.card-image{
-  height: 350px;
+div.card-image {
+  height: 200px;
+  overflow: hidden;
 }
 
 img.card-img-top {
   width: 100% !important;
   height: 100% !important;
+  transform: scale(1.5);
+  -webkit-transform: scale(1.5);
+  -moz-transform: scale(1.5);
+  -ms-transform: scale(1.5);
+  -o-transform: scale(1.5);
 }
 
 .navBook {
@@ -179,7 +185,6 @@ img.card-img-top {
   box-shadow: none;
 }
 
-
 /* تنسيقات بطاقات الكتب */
 .book-card {
   border: none;
@@ -188,7 +193,13 @@ img.card-img-top {
   overflow: hidden;
 }
 
-
+.book-card:hover {
+  transform: scale(1.03);
+  -webkit-transform: scale(1.03);
+  -moz-transform: scale(1.03);
+  -ms-transform: scale(1.03);
+  -o-transform: scale(1.03);
+}
 
 .book-card .btn-download {
   background-color: var(--primary-color-text) !important;
