@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>دار الفكر</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../style/book_detials.css" />
+  </head>
+  <body dir="rtl">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light mb-4">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#">دار الفكر</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" href="../index.html">الرئيسية</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">عن المكتبة</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#">الخدمات</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="/The Book Nook/classrooms/classrooms.html">الصفوف الدراسية</a>
+            </li>
+          </ul>
+          <a href="/The Book Nook/account/account.html" class="btn btn-primary text-white">الحساب</a>
+        </div>
+      </div>
+    </nav>
+    <!-- Book Details Section -->
+    <header class="container">
+      <div class="col-12 container-fluid d-flex justify-content-between top-n mb-4 mt-4">
+        <div class="col-lg-6 search-container g-6 p-lg-4">
+          <div class="input-group">
+            <!-- تأكد من وجود id -->
+            <input
+              type="text"
+              id="searchInput"
+              class="form-control"
+              placeholder="ابحث عن اسم الكتاب "
+            />
+            <ul id="suggestionsList" class="suggestions mt-5"></ul>
+            <button
+              class="btn btn-outline-primary"
+              type="button"
+              id="searchBtn"
+            >
+              بحث
+            </button>
+          </div>
+        </div>
+
+        <div class="col-lg-6 navBook d-flex mb-4 mt-4 w-50 ">
+  <a href="">المضافة حديثًا</a>
+<div class="dropdown">
+    <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+      الكُتاب
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li><a class="dropdown-item filter-item" href="#" data-filter="الفلسفة">ادهم شرقاوي</a></li>
+      <li><a class="dropdown-item filter-item"  href="#" data-filter="الروايات">ديمي لوفاتو</a></li>
+      <li><a class="dropdown-item filter-item" href="#" data-filter="الشعر">عمار الشمري</a></li>
+      <li><a class="dropdown-item filter-item" href="#" data-filter="اللغات">رغد نايف الحربي</a></li>
+      <li><a class="dropdown-item filter-item" href="#" data-filter="العلوم">شيماء هشام سعد</a></li>
+      <li><a class="dropdown-item filter-item" href="#" data-filter="البرمجة">بثينه العيسي</a></li>
+            <li><a class="dropdown-item filter-item" href="#" data-filter="البرمجة">ايريك دو كيرميل</a></li>
+    </ul>
+</div>
+  <div class="dropdown">
+    <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+      الأقسام
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li><a class="dropdown-item filter-item" href="#" data-filter="الفلسفة">الفلسفة</a></li>
+      <li><a class="dropdown-item filter-item"  href="#" data-filter="الروايات">الروايات</a></li>
+      <li><a class="dropdown-item filter-item" href="#" data-filter="الشعر">الشعر</a></li>
+      <li><a class="dropdown-item filter-item" href="#" data-filter="اللغات">اللغات</a></li>
+      <li><a class="dropdown-item filter-item" href="#" data-filter="العلوم">العلوم</a></li>
+      <li><a class="dropdown-item filter-item" href="#" data-filter="البرمجة">البرمجة</a></li>
+    </ul>
+</div>
+</div>
+        </div>
+      </div>
+      
+
+      <!-- تأكد من وجود id -->
+      <div class="container py-4">
+        <div class="row g-4" id="booksContainer">
+          <!-- سيتم إضافة بطاقات الكتب هنا -->
+        </div>
+      </div>
+    </header>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../script/book_detials.js"></script>
+  </body>
+</html>

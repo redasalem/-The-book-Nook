@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>الملف الشخصي</title>
+
+  <!-- خط pixel يشبه ماين كرافت -->
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/The Book Nook/style/profilePage.css">
+</head>
+<body>
+  <div class="container">
+    <h2>الملف الشخصي</h2>
+
+    <div class="info-section">
+      <h3>معلومات الحساب</h3>
+      <label for="name">الاسم الكامل:</label>
+      <input type="text" id="name" value="kholif" disabled />
+
+      <label for="email">البريد الإلكتروني:</label>
+      <input type="email" id="email" value="example@mail.com" disabled />
+
+      <label for="password">كلمة المرور:</label>
+      <input type="password" id="password" value="123456" disabled />
+    </div>
+
+    <div class="welcome-section" id="welcomeMsg"></div>
+
+    <div class="section">
+      <h3>الخصائص المتاحة</h3>
+      <div class="features-grid">
+        <div class="feature-card" onclick="manageSubscriptions()">
+          <span class="feature-icon">📦</span>
+          إدارة الاشتراكات
+        </div>
+        <div class="feature-card" onclick="viewCart()">
+          <span class="feature-icon">🛒</span>
+          سلة المشتريات
+        </div>
+        <div class="feature-card" onclick="showFavorites()">
+          <span class="feature-icon">❤️</span>
+          المفضلة
+        </div>
+        <div class="feature-card" onclick="showHistory()">
+          <span class="feature-icon">🕒</span>
+          تاريخ الطلبات
+        </div>
+        <div class="feature-card" onclick="showNotifications()">
+          <span class="feature-icon">🔔</span>
+          الإشعارات
+        </div>
+        <div class="feature-card" onclick="toggleDarkMode()">
+          <span class="feature-icon">🌙</span>
+          الوضع الليلي
+        </div>
+        <div class="feature-card" onclick="support()">
+          <span class="feature-icon">💬</span>
+          الدعم والمساعدة
+        </div>
+        <div class="feature-card" onclick="deactivateAccount()">
+          <span class="feature-icon">⚠️</span>
+          تعطيل الحساب مؤقتاً
+        </div>
+      </div>
+    </div>
+
+    <div class="logout">
+      <button onclick="logout()">تسجيل الخروج</button>
+    </div>
+  </div>
+ <script src="/The Book Nook/script/profilePage.js"></script>
+</body>
+</html>
