@@ -1,0 +1,29 @@
+<!DOCTYPE html><html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إنشاء حساب جديد</title>
+  <link rel="stylesheet" href="/The Book Nook/style/register.css">
+</head>
+<body>
+  <div class="register-container">
+    <h2>إنشاء حساب جديد</h2>
+    <form onsubmit="handleRegister(event)">
+      <label for="username">الاسم الكامل</label>
+      <input type="text" id="username" name="username" required /><label for="email">البريد الإلكتروني</label>
+  <input type="email" id="email" name="email" required />
+
+  <label for="password">كلمة المرور</label>
+  <input type="password" id="password" name="password" required />
+
+  <button type="submit">إنشاء حساب</button>
+  <div class="success" id="success-msg"></div>
+</form>
+
+<div class="login">
+  <p>هل لديك حساب بالفعل؟ <a href="/The Book Nook/account/account.html">تسجيل الدخول</a></p>
+</div>
+</div>
+<script src="/The Book Nook/script/register.js"></script>
+</body>
+</html>

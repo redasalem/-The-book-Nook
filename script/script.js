@@ -28,4 +28,8 @@ document.querySelector(".left").onclick = function () {
 document.querySelector(".right").onclick = function () {
   current = (current + 1) % backgrounds.length;
   setBackground(current);
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> a08f64b03a6d0543ab32fd77bb3b347003a36c5f

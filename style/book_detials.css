@@ -7,6 +7,10 @@
   -moz-transition: all 0.3s linear;
   -ms-transition: all 0.3s linear;
   -o-transition: all 0.3s linear;
+<<<<<<< HEAD
+=======
+  font-family: IBM Plex Sans Arabic sans-serif;
+>>>>>>> a08f64b03a6d0543ab32fd77bb3b347003a36c5f
 }
 
 :root {
@@ -134,7 +138,11 @@ header {
   margin-top: 60px !important;
 }
 div.card-image {
+<<<<<<< HEAD
   height: 200px;
+=======
+  height: 250px;
+>>>>>>> a08f64b03a6d0543ab32fd77bb3b347003a36c5f
   overflow: hidden;
 }
 
@@ -265,4 +273,8 @@ img.card-img-top {
     width: 100% !important;
     margin: auto !important;
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> a08f64b03a6d0543ab32fd77bb3b347003a36c5f
