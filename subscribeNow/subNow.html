@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../style/style.css" />
+    <link rel="stylesheet" href="/book%202/style/style.css" />
     <link style rel="stylesheet" href="../style/subNow.css" />
   </head>
   <body>
@@ -36,14 +36,14 @@
               <a class="nav-link active" href="../index.html">الرئيسية</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">عن المكتبة</a>
+              <a class="nav-link" href="../index.html">عن المكتبة</a>
             </li>
-            <li class="nav-item"><a class="nav-link" href="#">الخدمات</a></li>
+            <li class="nav-item"><a class="nav-link" href="../index.html">الخدمات</a></li>
             <li class="nav-item">
-              <a class="nav-link" href="classrooms.html">الصفوف الدراسية</a>
+              <a class="nav-link" href="../classrooms/classrooms.html">الصفوف الدراسية</a>
             </li>
           </ul>
-          <a href="/The Book Nook/account/account.html" class="btn btn-primary text-white">الحساب</a>
+          <div id="user-info-navbar"></div> <!-- Placeholder for user info/account button -->
         </div>
       </div>
     </nav>
@@ -95,18 +95,83 @@
 
       <div class="mb-3">
         <select id="payment" class="form-select p-3 mb-4 mt-4">
-          <option disabled value="">اختر طريقة الدفع</option>
+          <option disabled selected value="">اختر طريقة الدفع</option>
           <option value="credit">بطاقة ائتمان</option>
           <option value="fawry">فوري</option>
           <option value="vodafone">فودافون كاش</option>
         </select>
       </div>
 
-      <div class="text-center">
-        <button class="btn btn-primary w-50 p-3 mb-5 mt-4">اشترك الآن</button>
+      <div id="serviceNumberGroup" class="mb-3" style="display: none;">
+        <label for="serviceNumber" class="form-label">رقم الخدمة:</label>
+        <input type="text" id="serviceNumber" class="form-control p-3" placeholder="أدخل رقم الخدمة"/>
       </div>
+
+      <div class="text-center">
+        <button id="subscribeBtn" class="btn btn-primary w-50 p-3 mb-5 mt-4">اشترك الآن</button>
+      </div>
+      <div id="message" class="alert mt-3" style="display: none;"></div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/book%202/script/navbarUser.js"></script>
+    <script>
+      document.getElementById('payment').addEventListener('change', function() {
+        const serviceNumberGroup = document.getElementById('serviceNumberGroup');
+        if (this.value === 'fawry' || this.value === 'vodafone') {
+          serviceNumberGroup.style.display = 'block';
+        } else {
+          serviceNumberGroup.style.display = 'none';
+        }
+      });
+
+      document.getElementById('subscribeBtn').addEventListener('click', async function() {
+        const selectedPlan = document.querySelector('input[name="plan"]:checked').value;
+        const paymentMethod = document.getElementById('payment').value;
+        const serviceNumber = document.getElementById('serviceNumber').value;
+        const messageDiv = document.getElementById('message');
+
+        if (!paymentMethod) {
+          messageDiv.textContent = 'الرجاء اختيار طريقة الدفع.';
+          messageDiv.className = 'alert alert-danger';
+          messageDiv.style.display = 'block';
+          return;
+        }
+
+        // Validate service number for specific payment methods on the client-side
+        if ((paymentMethod === 'fawry' || paymentMethod === 'vodafone') && !serviceNumber) {
+            messageDiv.textContent = 'الرجاء إدخال رقم الخدمة.';
+            messageDiv.className = 'alert alert-danger';
+            messageDiv.style.display = 'block';
+            return;
+        }
+
+        try {
+          const response = await fetch('/book%202/subscribeNow/processSubscription.php', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ plan: selectedPlan, payment: paymentMethod, service_number: serviceNumber })
+          });
+
+          const data = await response.json();
+
+          if (data.success) {
+            messageDiv.textContent = data.message;
+            messageDiv.className = 'alert alert-success';
+          } else {
+            messageDiv.textContent = data.message || 'حدث خطأ ما.';
+            messageDiv.className = 'alert alert-danger';
+          }
+          messageDiv.style.display = 'block';
+        } catch (error) {
+          console.error('Error:', error);
+          messageDiv.textContent = 'حدث خطأ في الاتصال بالخادم. الرجاء المحاولة لاحقاً.';
+          messageDiv.className = 'alert alert-danger';
+          messageDiv.style.display = 'block';
+        }
+      });
+    </script>
   </body>
 </html>

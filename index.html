@@ -45,17 +45,10 @@
             </li>
             <li class="nav-item"><a class="nav-link" href="#">الخدمات</a></li>
             <li class="nav-item">
-<<<<<<< HEAD
-              <a class="nav-link" href="classrooms.html">الصفوف الدراسية</a>
+              <a class="nav-link" href="classrooms/classrooms.html">الصفوف الدراسية</a>
             </li>
           </ul>
-          <a href="account.html" class="btn btn-primary text-white">الحساب</a>
-=======
-              <a class="nav-link" href="/The Book Nook/classrooms/classrooms.html">الصفوف الدراسية</a>
-            </li>
-          </ul>
-          <a href="/The Book Nook/account/account.html" class="btn btn-primary text-white">الحساب</a>
->>>>>>> a08f64b03a6d0543ab32fd77bb3b347003a36c5f
+          <div id="user-info-navbar"></div>
         </div>
       </div>
     </nav>
@@ -90,7 +83,7 @@
               تجمع بين الشراء والاستمتاع بالقراءة في مكان واحد
             </p>
             <div class="details mb-2">
-              <a href="./subscribeNow/subNow.html" class="btn btn-primary"
+              <a href="subscribeNow/subNow.html" class="btn btn-primary"
                 >اشترك الآن</a
               >
               <a
@@ -121,10 +114,48 @@
       integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
       crossorigin="anonymous"
     ></script>
-    <script src="script/script.js"></script>
+    <script >
+      const backgrounds = [
+  "url('images/book_1.jpg')",
+  "url('images/book_2.jpg')",
+  "url('images/book_3.jpg')",
+  "url('images/book_4.jpg')",
+  "url('images/book_5.jpg')",
+  "url('images/book_6.jpg')",
+  "url('images/book_7.jpg')",
+  "url('images/book_8.jpg')",
+];
+
+let current = 0;
+const phoneShape = document.querySelector(".phone-shape");
+
+function setBackground(idx) {
+  if (!phoneShape) return;
+  phoneShape.style.background = `${backgrounds[idx]} no-repeat center center`;
+  phoneShape.style.backgroundSize = "100% 100%";
+}
+
+if (phoneShape) {
+  setBackground(current);
+
+  const leftBtn = document.querySelector(".left");
+  const rightBtn = document.querySelector(".right");
+
+  if (leftBtn) {
+    leftBtn.onclick = function () {
+      current = (current - 1 + backgrounds.length) % backgrounds.length;
+      setBackground(current);
+    };
+  }
+
+  if (rightBtn) {
+    rightBtn.onclick = function () {
+      current = (current + 1) % backgrounds.length;
+      setBackground(current);
+    };
+  }
+}
+    </script>
+    <script src="script/navbarUser.js"></script>
   </body>
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> a08f64b03a6d0543ab32fd77bb3b347003a36c5f

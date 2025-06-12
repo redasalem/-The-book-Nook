@@ -1,8 +1,4 @@
 // بيانات الكتب
-<<<<<<< HEAD
-=======
-// بيانات الكتب
->>>>>>> a08f64b03a6d0543ab32fd77bb3b347003a36c5f
 const books = [
   {
     id: 1,
@@ -124,12 +120,118 @@ function createBookCard(book) {
         </div>
     `;
 }
-// دالة عرض الكتب
-function displayBooks(booksToShow = books) {
-  const container = document.getElementById("booksContainer");
-  container.innerHTML = booksToShow
-    .map((book) => createBookCard(book))
-    .join("");
+
+// Global variables
+let currentCategory = null;
+let currentAuthor = null;
+let currentSearch = null;
+let isNewOnly = false;
+
+// Load books when page loads
+// window.onload = function() {
+//     loadBooks();
+//     setupEventListeners();
+// };
+
+// Setup event listeners
+function setupEventListeners() {
+    // Search input
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', debounce(function() {
+        currentSearch = this.value;
+        loadBooks();
+    }, 500));
+
+    // Search button
+    document.getElementById('searchBtn').addEventListener('click', function() {
+        currentSearch = searchInput.value;
+        loadBooks();
+    });
+
+    // Category filter
+    document.querySelectorAll('[data-filter]').forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            const filter = this.getAttribute('data-filter');
+            if (this.closest('.dropdown-menu').previousElementSibling.textContent.includes('الأقسام')) {
+                currentCategory = filter;
+                currentAuthor = null;
+            } else {
+                currentAuthor = filter;
+                currentCategory = null;
+            }
+            loadBooks();
+        });
+    });
+
+    // New books link
+    // document.getElementById('newBooksLink').addEventListener('click', function(e) {
+    //     e.preventDefault();
+    //     isNewOnly = true;
+    //     loadBooks();
+    // });
+}
+
+// Load books from server
+async function loadBooks() {
+    try {
+        const response = await fetch('../bookDetials/getBooks.php');
+        const data = await response.json();
+
+        const container = document.getElementById('booksContainer');
+        container.innerHTML = '';
+
+        if (data.success && data.data.length > 0) {
+            data.data.forEach(book => {
+                container.innerHTML += `
+                    <div class="col-md-4 col-lg-3">
+                        <div class="card h-100">
+                            <img src="${book.image_url || '/images/default-book.jpg'}" class="card-img-top" alt="${book.title}">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">${book.title}</h5>
+                                <p class="card-text">${book.author}</p>
+                                <p class="card-text">${book.category}</p>
+                                <p class="card-text"><strong>السعر: ${book.price || 'غير محدد'} ريال</strong></p>
+                                ${book.pdf_url ? `
+                                    <a href="${book.pdf_url}" class="btn btn-primary w-100" download>
+                                        <i class="fas fa-download ms-2"></i>
+                                        تحميل
+                                    </a>
+                                ` : `
+                                    <button class="btn btn-secondary w-100" disabled>
+                                        <i class="fas fa-lock ms-2"></i>
+                                        يتطلب شراء
+                                    </button>
+                                `}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        } else {
+            container.innerHTML = `<p class="text-danger">لا توجد كتب مسجلة.</p>`;
+        }
+    } catch (error) {
+        document.getElementById('booksContainer').innerHTML = `<p class="text-danger">حدث خطأ في الاتصال.</p>`;
+    }
+}
+
+// Utility function for debouncing
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func.apply(this, args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Add to cart function (to be implemented)
+function addToCart(bookId) {
+    alert('سيتم إضافة الكتاب إلى السلة قريباً');
 }
 
 // تفعيل الفلاتر

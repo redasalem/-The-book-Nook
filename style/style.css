@@ -19,33 +19,6 @@ body {
   background-image: url(../images/wave.svg);
   background-position: bottom;
 }
-<<<<<<< HEAD
-=======
-.about-section, .services-section {
-  color: #0056b3;
-  font-size: 1.2rem;
-  line-height: 1.8;
-}
-
-.services-section .fa {
-  transition: transform 0.3s ease-in-out;
-}
-
-.services-section .fa:hover {
-  transform: scale(1.2);
-}
-
-.footer-section {
-  background-color: #0056b3;
-  color: #ffffff;
-  border-top: 3px solid #f3e4b0;
-}
-
-.footer-section p {
-  margin-bottom: 0.2rem;
-  font-size: 1rem;
-}
->>>>>>> a08f64b03a6d0543ab32fd77bb3b347003a36c5f
 
 .navbar {
   background-image: linear-gradient(to left, #f3e4b0, #fff5f9);
@@ -282,8 +255,4 @@ p {
   .custom-gap {
     gap: 4rem !important;
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> a08f64b03a6d0543ab32fd77bb3b347003a36c5f

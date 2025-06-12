@@ -1,20 +1,30 @@
-function handleLogin(event) {
+async function handleLogin(event) {
       event.preventDefault();
 
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
-      const remember = document.getElementById('remember').checked;
       const errorMsg = document.getElementById('error-msg');
 
-      if (email === 'example@mail.com' && password === '123456') {
-        if (remember) {
-          localStorage.setItem('userEmail', email);
+    try {
+        const response = await fetch('../account/login.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            window.location.href = '../index.html'; // Redirect to home page after successful login
         } else {
-          localStorage.removeItem('userEmail');
+            errorMsg.textContent = data.message;
+            errorMsg.style.display = 'block';
         }
-        window.location.href = 'account.html'; // صفحة الحساب
-      } else {
-        errorMsg.textContent = 'البريد الإلكتروني أو كلمة المرور غير صحيحة';
+    } catch (error) {
+        errorMsg.textContent = 'حدث خطأ في الاتصال';
+        errorMsg.style.display = 'block';
       }
     }
 
